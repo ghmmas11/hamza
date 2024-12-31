@@ -86,7 +86,7 @@
         }
 
         .unit-name {
-            font-size: 1.2em;
+            font-size: 1em;
             color: #fff;
             margin-top: 5px;
             display: block;
@@ -137,6 +137,7 @@
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+            // Ensure the values are always displayed in two digits
             document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
             document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
             document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
