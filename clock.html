@@ -20,7 +20,6 @@
             animation: backgroundEffect 10s infinite alternate;
         }
 
-
         .countdown-container {
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
@@ -106,13 +105,6 @@
             background-color: rgba(255, 255, 255, 0.4);
         }
 
-        .label {
-            font-size: 0.9em;
-            color: #f1c40f;
-            margin-top: 5px;
-            display: block;
-        }
-
         .unit-name {
             font-size: 1em;
             color: #fff;
@@ -126,20 +118,40 @@
             margin-top: 20px;
         }
 
-        /* Animate background and text changes */
-        @keyframes flashText {
-            0% { color: #f1c40f; }
-            50% { color: #fff; }
-            100% { color: #f1c40f; }
+        .moving-text {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            writing-mode: vertical-rl;
+            text-align: center;
+            font-size: 1.2em;
+            animation: slideIn 5s linear infinite alternate;
+            color: #f1c40f;
         }
 
-        .countdown h1 {
-            animation: flashText 1s infinite alternate;
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
-
     </style>
 </head>
 <body>
+
+    <div class="moving-text">
+        <p>النص الأول: العد التنازلي بدأ!</p>
+        <p>النص الثاني: استعد للحظة الحاسمة.</p>
+        <p>النص الثالث: العد مستمر، ترقبوا.</p>
+    </div>
 
     <div class="countdown-container">
         <div class="intro-text">:موعد البداية النارية عند السلك بعد</div>
@@ -165,7 +177,6 @@
         <p>أبو بكر ضلك رابط المعدة على الكروسان</p>
         <p style="font-size: 40px;">الي يأكل بصل ممنوع يأرقل</p>
         <p style="font-size: 40px;">البصل شلوووووووووووت</p>
-
     </div>
 
     <script>
@@ -180,17 +191,11 @@
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Ensure the values are always displayed in two digits
             document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
             document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
             document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
             document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
 
-            // Update background color when the time gets close
-            if (distance < 86400000) {  // Less than 24 hours
-                document.body.style.background = "linear-gradient(135deg, #e74c3c, #c0392b)";
-            }
-            
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("countdown").innerHTML = "انتهى الوقت!";
