@@ -1,234 +1,81 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>القرعة الإلكترونية</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f1c40f;
-            color: #fff;
-            text-align: center;
-            padding: 50px;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .lottery-container {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            font-size: 2em;
-            color: #f1c40f;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 1.2em;
-            color: #fff;
-        }
-
-        .button {
-            background-color: #f1c40f;
-            color: #fff;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            text-transform: uppercase;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            margin-top: 20px;
-        }
-
-        .button:hover {
-            background-color: #e67e22;
-            transform: translateY(-5px);
-        }
-
-        .button:active {
-            transform: translateY(2px);
-        }
-
-        .winner-message {
-            font-size: 1.5em;
-            margin-top: 30px;
-            color: #27ae60;
-            font-weight: bold;
-        }
-
-        select {
-            padding: 10px;
-            font-size: 1.2em;
-            margin-top: 20px;
-            border-radius: 5px;
-            border: none;
-        }
-
-        table {
-            width: 100%;
-            margin-top: 30px;
-            border-collapse: collapse;
-            color: #fff;
-            text-align: center;
-        }
-
-        table, th, td {
-            border: 1px solid #fff;
-        }
-
-        th, td {
-            padding: 10px;
-        }
-
-        th {
-            background-color: #f1c40f;
-        }
-
-        td {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>القرعة الإلكترونية</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      direction: rtl;
+      text-align: center;
+    }
+    select {
+      padding: 10px;
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="lottery-container">
-        <h1>صفحة القرعة الإلكترونية</h1>
-        <p>اختر اسمك من القائمة أدناه، ثم اضغط على زر "قرعة" لاختيار شريكك بشكل عشوائي.</p>
+  <h1>القرعة الإلكترونية</h1>
+  <p>اختر اسمك من القائمة وأضغط على زر "قرعة" لاختيار شريكك.</p>
 
-        <select id="userSelect">
-            <option value="">اختر اسمك</option>
-            <option value="حمزه">حمزه</option>
-            <option value="ملك الافاعي">ملك الافاعي</option>
-            <option value="عجاج">عجاج</option>
-            <option value="سفن اب">سفن اب</option>
-            <option value="زهدي">زهدي</option>
-            <option value="الاقرط">الاقرط</option>
-            <option value="حمامه">حمامه</option>
-            <option value="خفاش">خفاش</option>
-            <option value="الاوق">الاوق</option>
-            <option value="البوبو">البوبو</option>
-            <option value="السلك">السلك</option>
-            <option value="جبل">جبل</option>
-            <option value="راجي">راجي</option>
-        </select>
+  <select id="userSelect">
+    <option value="">اختر اسمك</option>
+    <option value="حمزه">حمزه</option>
+    <option value="ملك الافاعي">ملك الافاعي</option>
+    <option value="عجاج">عجاج</option>
+    <option value="سفن اب">سفن اب</option>
+    <option value="زهدي">زهدي</option>
+    <option value="الاقرط">الاقرط</option>
+    <option value="حمامه">حمامه</option>
+    <option value="خفاش">خفاش</option>
+    <option value="الاوق">الاوق</option>
+    <option value="البوبو">البوبو</option>
+    <option value="السلك">السلك</option>
+    <option value="جبل">جبل</option>
+    <option value="راجي">راجي</option>
+  </select>
 
-        <button class="button" onclick="startLottery()">قرعة</button>
+  <button onclick="startLottery()">قرعة</button>
 
-        <p class="winner-message" id="winnerMessage" style="display: none;"></p>
+  <div id="result"></div>
 
-        <button class="button" onclick="closeWindow()">إغلاق</button>
-
-        <!-- جدول عرض النتائج -->
-        <h2>نتائج القرعة</h2>
-        <table id="resultTable">
-            <thead>
-                <tr>
-                    <th>اسم المستخدم</th>
-                    <th>اسم الشريك</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- النتائج ستظهر هنا -->
-            </tbody>
-        </table>
-    </div>
-
-    <script>
-        // قائمة الأسماء للمشاركين في القرعة
-        let participants = ["حمزه", "ملك الافاعي", "عجاج", "سفن اب", "زهدي", "الاقرط", "حمامه", "خفاش", "الاوق", "البوبو", "السلك", "جبل", "راجي"];
-
-        // دالة لبدء القرعة
-        function startLottery() {
-            const userName = document.getElementById("userSelect").value;
-
-            // التحقق من أنه تم اختيار اسم من القائمة
-            if (userName === "") {
-                alert("الرجاء اختيار اسمك أولاً.");
-                return;
-            }
-
-            // التحقق إذا كان المستخدم قد أجرى القرعة بالفعل
-            if (localStorage.getItem("lotteryDone") === "true") {
-                alert("لقد قمت بإجراء القرعة بالفعل. لا يمكنك إجراء قرعة أخرى.");
-                return;
-            }
-
-            // إجراء القرعة بشكل عشوائي
-            let winner = getRandomWinner(userName);
-
-            // حفظ نتيجة القرعة في localStorage
-            let lotteryResults = JSON.parse(localStorage.getItem("lotteryResults")) || [];
-            lotteryResults.push({ user: userName, winner: winner });
-            localStorage.setItem("lotteryResults", JSON.stringify(lotteryResults));
-
-            // حفظ حالة القرعة
-            localStorage.setItem("lotteryDone", "true");
-
-            // عرض النتيجة
-            document.getElementById("winnerMessage").style.display = "block";
-            document.getElementById("winnerMessage").innerHTML = `القرعة تمت! الشريك المختار هو: ${winner}`;
-
-            // إزالة اسم المستخدم والشريك من القائمة
-            participants = participants.filter(name => name !== userName && name !== winner);
-            updateDropdown();
-
-            // تحديث عرض النتائج
-            updateResultTable();
-        }
-
-        // دالة لاختيار فائز عشوائي
-        function getRandomWinner(excludedUser) {
-            // إزالة المستخدم الذي أجرى القرعة من قائمة المشاركين
-            let availableParticipants = participants.filter(name => name !== excludedUser);
-            let winner = availableParticipants[Math.floor(Math.random() * availableParticipants.length)];
-            return winner;
-        }
-
-        // تحديث قائمة الأسماء في القائمة المنسدلة
-        function updateDropdown() {
-            const select = document.getElementById("userSelect");
-            select.innerHTML = '<option value="">اختر اسمك</option>';  // إعادة تعيين القائمة
-            participants.forEach(name => {
-                const option = document.createElement("option");
-                option.value = name;
-                option.textContent = name;
-                select.appendChild(option);
-            });
-        }
-
-        // تحديث عرض نتائج القرعة في الجدول
-        function updateResultTable() {
-            const resultTable = document.getElementById("resultTable").getElementsByTagName("tbody")[0];
-            resultTable.innerHTML = ""; // مسح الجدول الحالي
-
-            const lotteryResults = JSON.parse(localStorage.getItem("lotteryResults")) || [];
-            lotteryResults.forEach(result => {
-                const row = resultTable.insertRow();
-                const cell1 = row.insertCell(0);
-                const cell2 = row.insertCell(1);
-                cell1.textContent = result.user;
-                cell2.textContent = result.winner;
-            });
-        }
-
-        // إغلاق الصفحة
-        function closeWindow() {
-            window.close();
-        }
-
-        // تحديث النتائج عند تحميل الصفحة
-        window.onload = function() {
-            updateResultTable();
-        };
-    </script>
+  <script>
+    function startLottery() {
+      const userName = document.getElementById('userSelect').value;
+      
+      if (!userName) {
+        alert('يرجى اختيار اسمك أولا');
+        return;
+      }
+      
+      // استدعاء دالة Google Apps Script
+      google.script.run.withSuccessHandler(function(winner) {
+        // عرض النتيجة
+        document.getElementById('result').innerHTML = 'تم اختيار شريكك: ' + winner;
+        
+        // تعطيل الاختيار بعد القرعة
+        document.getElementById('userSelect').disabled = true;
+      }).startLottery(userName);
+    }
+  </script>
 
 </body>
 </html>
