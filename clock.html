@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            background: url('106576.jpg') no-repeat center center fixed;
+            background: url('887.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
             display: flex;
@@ -71,7 +71,7 @@
             text-align: center;
         }
 
-        textarea, input {
+        select, button {
             width: 100%;
             margin-top: 20px;
             padding: 10px;
@@ -81,11 +81,6 @@
         }
 
         button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            border-radius: 10px;
             background-color: #f1c40f;
             color: #000;
             cursor: pointer;
@@ -115,8 +110,22 @@
         </div>
 
         <h1>قرعة اختيار الشريك</h1>
-        <input id="userName" type="text" placeholder="اكتب اسمك هنا...">
-        <button onclick="pickPartner()">اختيار الشريك</button>
+        <select id="userName">
+            <option value="">اختر اسمك...</option>
+            <option value="حمزه">حمزه</option>
+            <option value="ملك الافاعي">ملك الافاعي</option>
+            <option value="السلك">السلك</option>
+            <option value="البوبو">البوبو</option>
+            <option value="الاوق">الاوق</option>
+            <option value="سفن اب">سفن اب</option>
+            <option value="زهدي">زهدي</option>
+            <option value="الاقرط">الاقرط</option>
+            <option value="حمامه">حمامه</option>
+            <option value="جبل">جبل</option>
+            <option value="راجي">راجي</option>
+            <option value="خفاش">خفاش</option>
+        </select>
+        <button id="drawButton" onclick="pickPartner()">اختيار الشريك</button>
         <div id="result"></div>
     </div>
 
@@ -145,21 +154,28 @@
         }, 1000);
 
         // Partner Picker Script
-        function pickPartner() {
-            const userName = document.getElementById("userName").value.trim();
-            const names = ["حمزه", "ملك الافاعي", "السلك", "البوبو", "الاوق", "سفن اب", "زهدي", "الاقرط", "حمامه", "جبل", "راجي", "خفاش"];
+        let hasDrawn = false;
 
-            if (!userName) {
-                document.getElementById("result").innerHTML = "يرجى إدخال اسمك.";
+        function pickPartner() {
+            if (hasDrawn) {
+                document.getElementById("result").innerHTML = "لقد قمت بالقرعة بالفعل. لا يمكن إجراء قرعة أخرى.";
                 return;
             }
 
-            names.push(userName);
+            const userName = document.getElementById("userName").value;
+            const names = ["حمزه", "ملك الافاعي", "السلك", "البوبو", "الاوق", "سفن اب", "زهدي", "الاقرط", "حمامه", "جبل", "راجي", "خفاش"];
+
+            if (!userName) {
+                document.getElementById("result").innerHTML = "يرجى اختيار اسمك.";
+                return;
+            }
 
             const shuffled = names.sort(() => Math.random() - 0.5);
             const partner = shuffled.find(name => name !== userName);
 
             document.getElementById("result").innerHTML = `<h2>شريكك هو:</h2><p>${partner}</p>`;
+            hasDrawn = true;
+            document.getElementById("drawButton").disabled = true;
         }
     </script>
 
