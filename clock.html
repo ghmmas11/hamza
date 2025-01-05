@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            background: url('887.jpg') no-repeat center center fixed;
+            background: url('106576.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
             display: flex;
@@ -142,6 +142,32 @@
                 opacity: 1;
             }
         }
+
+        .modern-button {
+            background: linear-gradient(45deg, #ff6b6b, #f7b731);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            text-align: center;
+            text-transform: uppercase;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 20px; /* إضافة المسافة بين العداد والزر */
+        }
+
+        .modern-button:hover {
+            background: linear-gradient(45deg, #f7b731, #ff6b6b);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .modern-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -171,9 +197,10 @@
                 <div class="unit-name">ثانية</div>
             </div>
         </div>
+        <button class="modern-button" onclick="navigateToLottery()">اذهب إلى صفحة القرعة</button>
         <p></p>
         <p style="font-size: 40px;"></p>
-        <p style="font-size: 40px;color: red;">مش انت الي طبخت السم وانت الي رح تاكله</p>
+        <p style="font-size: 40px;color: red;">مش انت الي طبخت السم وانت الي رح تاكله</p>
     </div>
 
     <script>
@@ -198,8 +225,11 @@
                 document.getElementById("countdown").innerHTML = "انتهى الوقت!";
             }
         }, 1000);
+
+        function navigateToLottery() {
+            window.open("lottery.html", "_blank"); // يفتح الرابط في تبويب جديد
+        }
     </script>
 
 </body>
 </html>
-
