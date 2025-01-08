@@ -19,7 +19,8 @@
             text-align: center;
             animation: backgroundEffect 10s infinite alternate;
         }
-        video {
+        * الفيديو في الخلفية */
+        .video-background {
             position: fixed;
             top: 0;
             left: 0;
@@ -27,6 +28,14 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
+        }
+        /* المحتوى فوق الفيديو */
+        .content {
+            position: relative;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
         }
 
         .countdown-container {
@@ -182,9 +191,11 @@
     </style>
 </head>
 <body>
-     <video autoplay loop>
-        <source src="wha.mp4" type="video/mp4">
-             </video>
+     <!-- الفيديو في الخلفية -->
+    <video class="video-background" autoplay muted loop>
+        <source src="your-video.mp4" type="video/mp4">
+        متصفحك لا يدعم تشغيل الفيديو.
+    </video>
     <div class="moving-text">
         <p style="font-size: 40px;"></p>
     </div>
@@ -192,6 +203,7 @@
     <div class="countdown-container">
         <div class="intro-text">:موعد الدخول السلس عند ملك الأفاعي بعد</div>
         <h1>العد التنازلي إلى 9 يناير 2025 الساعة 7 مساءً</h1>
+        <button onclick="playSound()">تشغيل الصوت</button>
         <div id="countdown" class="countdown">
             <div class="time-unit" id="days">
                 00
@@ -217,6 +229,12 @@
     </div>
 
     <script>
+        // تشغيل الصوت عند النقر
+        function playSound() {
+            const video = document.querySelector(".video-background");
+            video.muted = false;
+            video.play();
+        }
         var targetDate = new Date("Jan 9, 2025 19:00:00").getTime();
 
         var x = setInterval(function() {
