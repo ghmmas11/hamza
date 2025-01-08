@@ -20,7 +20,16 @@
             position: relative;
         }
 
-        video.video-background {
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        video {
             position: fixed;
             top: 0;
             left: 0;
@@ -28,16 +37,6 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-        }
-
-        .countdown-container {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
         }
 
         .audio-button {
@@ -52,25 +51,18 @@
             font-size: 16px;
             cursor: pointer;
             z-index: 1;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .audio-button:hover {
-            background-color: rgba(255, 255, 255, 1);
         }
     </style>
 </head>
 <body>
-    <!-- إضافة الفيديو كخلفية -->
-    <video class="video-background" autoplay muted loop id="backgroundVideo">
+    <video autoplay muted loop id="backgroundVideo">
         <source src="wha.mp4" type="video/mp4">
         متصفحك لا يدعم تشغيل الفيديو.
     </video>
 
-    <!-- زر تشغيل الصوت -->
     <button class="audio-button" id="audioButton" onclick="toggleAudio()">تشغيل الصوت</button>
 
-    <div class="countdown-container">
+    <div class="container">
         <h1>العد التنازلي إلى 9 يناير 2025 الساعة 7 مساءً</h1>
         <div id="countdown">
             <div id="days">00</div>
@@ -81,7 +73,6 @@
     </div>
 
     <script>
-        // ضبط العد التنازلي
         var targetDate = new Date("Jan 9, 2025 19:00:00").getTime();
         var x = setInterval(function() {
             var now = new Date().getTime();
@@ -103,7 +94,6 @@
             }
         }, 1000);
 
-        // التحكم بالصوت
         var video = document.getElementById("backgroundVideo");
         var audioButton = document.getElementById("audioButton");
 
