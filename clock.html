@@ -37,6 +37,8 @@
             width: 90%;
             max-width: 400px;
             animation: popIn 1s ease-out;
+            z-index: 1; /* وضع المحتوى فوق الفيديو */
+            position: relative; /* التأكد من ظهوره فوق الفيديو */
         }
 
         @keyframes popIn {
@@ -180,9 +182,9 @@
     </style>
 </head>
 <body>
-     <video autoplay muted loop>
+     <video autoplay loop>
         <source src="wha.mp4" type="video/mp4">
-         
+             </video>
     <div class="moving-text">
         <p style="font-size: 40px;"></p>
     </div>
