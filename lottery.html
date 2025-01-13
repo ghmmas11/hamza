@@ -101,7 +101,33 @@
                 <td></td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr class="total-row">
+                <td>الإجمالي</td>
+                <td id="totalAmount">0</td>
+            </tr>
+        </tfoot>
     </table>
+     <script>
+        // حساب مجموع المبالغ
+        function calculateTotal() {
+            let table = document.getElementById("amountTable");
+            let rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+            let total = 0;
+
+            // جمع المبالغ من جميع الصفوف
+            for (let i = 0; i < rows.length; i++) {
+                let amount = parseFloat(rows[i].cells[1].innerText);
+                total += amount;
+            }
+
+            // تحديث الخلية الخاصة بالمجموع
+            document.getElementById("totalAmount").innerText = total;
+        }
+
+        // استدعاء الدالة عند تحميل الصفحة
+        calculateTotal();
+    </script>
 </body>
 </html>
 
