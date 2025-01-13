@@ -19,14 +19,14 @@
             text-align: center;
             animation: backgroundEffect 10s infinite alternate;
         }
-        video {
+       /* video {
             position:fixed;
             top:0;
             left:0;
             width:100%;
             height:100%;
             object-fit: cover;
-            z-index:-1;
+            z-index:-1; */
         }
                 .audio-button {
             position:fixed;
@@ -199,7 +199,7 @@
      <video autoplay muted loop id="backgroundVideo">
         <source src="whm.mp4"type="video/mp4">
              </video>
-        <button class="audio-button" id="audioButton" onclick="toggleAudio()">تشغيل الصوت</button>
+        <button class="audio-button" id="audioButton" onclick="toggleAudio()">تشغيل الصوت</button> 
     <div class="moving-text">
         <p style="font-size: 40px;"></p>
     </div>
@@ -225,14 +225,14 @@
                 <div class="unit-name">ثانية</div>
             </div>
         </div>
-        <button class="modern-button" onclick="navigateToLottery()">اذهب إلى صفحة القرعة</button>
+        <button class="modern-button" onclick="navigateToLottery()">اذهب الى صفحة الجمع</button>
         <p></p>
         <p style="font-size: 40px;"></p>
-        <p style="font-size: 40px;color: red;">اهلا وسهلا بكم في مضارب الحمدان</p>
+        <p style="font-size: 40px;color: red;">اهلا وسهلا بكم </p>
     </div>
 
     <script>
-        var targetDate = new Date("Jan 9, 2025 19:00:00").getTime();
+        var targetDate = new Date("Jan 16, 2025 19:00:00").getTime();
 
         var x = setInterval(function() {
             var now = new Date().getTime();
@@ -253,7 +253,8 @@
                 document.getElementById("countdown").innerHTML = "انتهى الوقت!";
             }
         }, 1000);
-                var video = document.getElementById("backgroundVideo");
+        
+               /* var video = document.getElementById("backgroundVideo");
         var audioButton = document.getElementById("audioButton");
 
         function toggleAudio() {
@@ -264,8 +265,7 @@
                 video.muted = true;
                 audioButton.textContent = "تشغيل الصوت";
             }
-        }
-
+        }*/
 
         function navigateToLottery() {
             window.open("lottery.html", "_blank"); // يفتح الرابط في تبويب جديد
