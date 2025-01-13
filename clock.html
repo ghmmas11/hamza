@@ -19,7 +19,7 @@
             text-align: center;
             animation: backgroundEffect 10s infinite alternate;
         }
-       /* video {
+       <!-- video {
             position:fixed;
             top:0;
             left:0;
@@ -27,7 +27,8 @@
             height:100%;
             object-fit: cover;
             z-index:-1; */
-        }
+        } 
+        -->
                 .audio-button {
             position:fixed;
             top:20px;
@@ -196,10 +197,11 @@
     </style>
 </head>
 <body>
-    /* <video autoplay muted loop id="backgroundVideo">
+    <!--
+    <video autoplay muted loop id="backgroundVideo">
         <source src="whm.mp4"type="video/mp4">
              </video>
-        <button class="audio-button" id="audioButton" onclick="toggleAudio()">تشغيل الصوت</button> */
+        <button class="audio-button" id="audioButton" onclick="toggleAudio()">تشغيل الصوت</button> -->
     <div class="moving-text">
         <p style="font-size: 40px;"></p>
     </div>
@@ -254,7 +256,8 @@
             }
         }, 1000);
         
-               /* var video = document.getElementById("backgroundVideo");
+               <!-- 
+                   var video = document.getElementById("backgroundVideo");
         var audioButton = document.getElementById("audioButton");
 
         function toggleAudio() {
@@ -265,7 +268,8 @@
                 video.muted = true;
                 audioButton.textContent = "تشغيل الصوت";
             }
-        }*/
+        }
+        -->
 
         function navigateToLottery() {
             window.open("lottery.html", "_blank"); // يفتح الرابط في تبويب جديد
