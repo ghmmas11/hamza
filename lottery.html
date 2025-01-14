@@ -8,15 +8,8 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-           /* background-color: #f4f4f9;*/
-            color: #333;
             margin: 0;
             padding: 20px;
-            background-image: url('your-image.jpg'); /* رابط الصورة */
-            background-size: cover; /* جعل الصورة تغطي الصفحة بالكامل */
-            background-position: center; /* تمركز الصورة */
-            background-repeat: no-repeat; /* منع تكرار الصورة */
-            font-family: Arial, sans-serif;
         }
         table {
             margin: 20px auto;
@@ -41,11 +34,17 @@
         tr:hover {
             background-color: #f1f1f1;
         }
+        .green-row {
+            background-color: #d4edda; /* لون أخضر */
+        }
+        .red-row {
+            background-color: #f8d7da; /* لون أحمر */
+        }
     </style>
 </head>
 <body>
     <h1>كشف الجمع</h1>
-    <table>
+    <table id="amountTable">
         <thead>
             <tr>
                 <th>الاسم</th>
@@ -55,83 +54,43 @@
         <tbody>
             <tr>
                 <td>حمزه</td>
-                <td>5</td>
+                <td><input type="number" value="5" oninput="updateRowColors()"></td>
             </tr>
             <tr>
                 <td>ابو حامد</td>
-                <td>5</td>
+                <td><input type="number" value="0" oninput="updateRowColors()"></td>
             </tr>
             <tr>
                 <td>ابو يزيد</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>ابو خلف</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>ابو بكر</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>خفاش</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>صهيب</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>ايهم</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>حمامه</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>نمر</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>انس</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>جبل</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>وجدي</td>
-                <td></td>
+                <td><input type="number" value="0" oninput="updateRowColors()"></td>
             </tr>
         </tbody>
         <tfoot>
-            <tr class="total-row">
+            <tr>
                 <td>الإجمالي</td>
                 <td id="totalAmount">0</td>
             </tr>
         </tfoot>
     </table>
-     <script>
-        // حساب مجموع المبالغ
-        function calculateTotal() {
+    <script>
+        function updateRowColors() {
             let table = document.getElementById("amountTable");
             let rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-            let total = 0;
 
-            // جمع المبالغ من جميع الصفوف
             for (let i = 0; i < rows.length; i++) {
-                let amount = parseFloat(rows[i].cells[1].innerText);
-                total += amount;
+                let input = rows[i].cells[1].querySelector('input');
+                if (input && parseFloat(input.value) === 5) {
+                    rows[i].classList.add("green-row");
+                    rows[i].classList.remove("red-row");
+                } else {
+                    rows[i].classList.add("red-row");
+                    rows[i].classList.remove("green-row");
+                }
             }
-
-            // تحديث الخلية الخاصة بالمجموع
-            document.getElementById("totalAmount").innerText = total;
         }
 
-        // استدعاء الدالة عند تحميل الصفحة
-        calculateTotal();
+        // استدعاء الوظيفة عند تحميل الصفحة
+        updateRowColors();
     </script>
 </body>
 </html>
