@@ -5,62 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صندوق تكافل عبدو</title>
     <style>
+        /* تصميم الصفحة */
         body {
-            font-family: Arial, sans-serif;
-            direction: rtl;
+            font-family: 'Tajawal', sans-serif;
             text-align: center;
+            direction: rtl;
+            background: linear-gradient(to right, #4A90E2, #50BFA5);
+            color: white;
+            margin: 0;
+            padding: 0;
         }
+
+        /* صندوق المحتوى */
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        /* تنسيق الجدول */
         table {
-            width: 80%;
-            margin: auto;
+            width: 100%;
             border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
         }
+
         th, td {
-            border: 1px solid black;
-            padding: 10px;
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
+
         th {
-            background-color: #f2f2f2;
+            background: rgba(255, 255, 255, 0.3);
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
 <body>
-    <h2>صندوق تكافل عبدو</h2>
-    <form id="donationForm">
-        <label for="donorName">اسم المتبرع:</label>
-        <input type="text" id="donorName" required>
-        <label for="donation">المساهمة:</label>
-        <input type="text" id="donation" required>
-        <button type="button" onclick="addDonation()">إضافة</button>
-    </form>
-    <br>
-    <table>
-        <thead>
-            <tr>
-                <th>اسم المتبرع</th>
-                <th>المساهمة</th>
-            </tr>
-        </thead>
-        <tbody id="donationList">
-        </tbody>
-    </table>
+
+    <div class="container">
+        <h2>صندوق تكافل عبدو</h2>
+        <h3>قائمة المتبرعين</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>اسم المتبرع</th>
+                    <th>المساهمة</th>
+                </tr>
+            </thead>
+            <tbody id="donationList"></tbody>
+        </table>
+    </div>
 
     <script>
-        function addDonation() {
-            let name = document.getElementById('donorName').value.trim();
-            let donation = document.getElementById('donation').value.trim();
-            if (name === "" || donation === "") {
-                alert("يرجى ملء جميع الحقول");
-                return;
-            }
-            let table = document.getElementById('donationList');
-            let row = table.insertRow();
-            let cell1 = row.insertCell(0);
-            let cell2 = row.insertCell(1);
-            cell1.textContent = name;
-            cell2.textContent = donation;
-            document.getElementById('donationForm').reset();
+        // قائمة المتبرعين (يتم التحديث يدويًا هنا)
+        const donations = [
+            { name: "أحمد خالد", item: "تبرع بملابس" },
+            { name: "محمد علي", item: "تبرع بأغطية" },
+            { name: "فاطمة الزهراء", item: "تبرعت بمواد غذائية" },
+            { name: "خالد محمود", item: "تبرع بأدوية" }
+        ];
+
+        // عرض المتبرعين في الجدول
+        function loadDonations() {
+            const donationList = document.getElementById("donationList");
+            donationList.innerHTML = "";
+            donations.forEach(donation => {
+                const row = `<tr><td>${donation.name}</td><td>${donation.item}</td></tr>`;
+                donationList.innerHTML += row;
+            });
         }
+
+        // تشغيل الوظيفة عند تحميل الصفحة
+        loadDonations();
     </script>
+
 </body>
 </html>
